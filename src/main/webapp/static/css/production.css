@@ -1,0 +1,362 @@
+/*面包屑导航*/
+.crumbs {
+    color: #999;
+    clear: both;
+    overflow: hidden;
+    zoom: 1;
+    margin-top: 15px;
+}
+.crumbs a {
+    color: #999;
+}
+/*左右栏*/
+.column_left {
+    float: left;
+    width: 940px;
+}
+/*左栏*/
+/*筛选框*/
+.filter-box {
+    background: #fff;
+    width: 100%;
+    padding: 15px 0px;
+    margin-top: 15px;
+}
+.filter-box .filter-list{
+    width: 900px;
+    margin: auto;
+}
+.filter-box .filter-list .filter-line {
+    line-height: 20px;
+    margin: 15px 0px;
+    overflow: hidden;
+    zoom: 1;
+}
+.filter-list .filter-line .title {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    float: left;
+    width: 75px;
+    line-height: 25px;
+}
+.filter-list .filter-line .select-list {
+    float: left;
+    color: #555;
+    width: 825px;
+}
+.filter-list .filter-line .select-list a {
+    float: left;
+    margin: 0px 15px 4px 15px;
+    height: 25px;
+    text-align: left;
+    padding: 0px 0px 0px 5px;
+    line-height: 25px;
+    color: #666;
+}
+.filter-list .filter-line .select-list .onSelect {
+    border-radius: 5px;
+    background: #dd4f50;
+    padding: 0px 5px;
+    height: 25px;
+    color: #fff;
+    line-height: 25px;
+}
+/*设计师作品列表*/
+/*作品筛选*/
+#print{
+	width: 100%;
+	height: auto;
+	background-color: #f2f2f2;
+}
+#print .crumbs{
+	width: 100%;
+}
+#print .filter-list{
+	width: 1170px;
+	padding: 0 15px;
+}
+#print .select-list{
+	width: 1095px;
+}
+/*印刷服务列表*/
+.print-recommend{
+	padding-top: 15px;
+}
+.print-recommend .print-recommend-list{
+	width: 100%;
+	padding-bottom: 30px;
+}
+.print-recommend .print-recommend-item{
+	float: left;
+	width: 285px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	background-color: #FFFFFF;
+}
+.print-title{
+    font-size: 16px;
+    color: #333333;
+    margin-top:5px ;
+    padding-left: 15px;
+}
+.print-detail{
+	height: 15px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 15px;
+}
+.print-detail span{
+	color: #333;
+	margin-right: 20px;
+}
+.print-detail span em{
+	color: #666;
+}
+.print-author{
+	height: 32px;
+	padding: 5px 15px;
+	border-top: 1px solid #e6e6e6;
+	line-height: 32px;
+}
+.print-author img{
+	height: 32px;
+	width: 32px;
+	float: left;
+	border-radius:16px ;
+}
+.print-author span{
+	float: left;
+	margin-left: 15px;
+	font-size: 14px;
+}
+.print-author span em{
+	color: #666666;
+}
+/*分页器*/
+.page{
+    margin: 40px 0 40px;
+    height: 32px;
+    overflow: hidden;
+    margin-top: 40px;
+    font-size: 14px;
+}
+.page .page-num{
+	width: auto;
+    margin: 0 auto;
+    height: 32px;
+    text-align: center;
+    background: none;
+}
+.page .page-num a{
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #686868;
+    border: none;
+    margin-right: 5px;
+    display: inline-block;
+}
+.page .page-num .on{
+	background-color: #00D9B5;
+}
+/*印刷产品详情*/
+/*右栏*/
+.column_right {
+    float: left;
+    width: 220px;
+    margin-left: 20px;
+    margin-top: 15px;
+    position: relative;
+    height: 800px;
+}
+/*右边栏表单*/
+.right-bar-form{
+	width: 100%;
+	margin: 0;
+	background-color: #2b2e3e;
+	z-index: 100;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}
+.right-bar-form div{
+	width: 200px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+.right-bar-form .right-bar-title{
+	height: auto;
+}
+.right-bar-form .right-bar-title p:first-child{
+	line-height: 20px;
+	font-size: 16px;
+	color: #FFF7F6;
+	padding: 0;
+}
+.right-bar-form .right-bar-title p:last-child{
+	color: #999999;
+	margin-top: 10px;
+	font-size: 14px;
+}
+.right-bar-form .form-input{
+	height:40px ;
+}
+.right-bar-form .form-input input{
+	height: 40px;
+	width: 100%;
+	border: 1px solid rgb(227, 227, 227);
+	text-indent: 10px;
+	font-size: 14px;
+}
+/*验证码*/
+.right-bar-form  #verification-code{
+	width: 100px;
+	float: left;
+}
+.right-bar-form  #send-code{
+	width: 80px;
+	border: none;
+	margin-left: 18px;
+	float: left;
+	height: 40px;
+	color: #FFFFFF;
+	background-color: #00D9B5;
+}
+/*提交*/
+.right-bar-form  #submit{
+	height: 40px;
+	width: 100%;
+	display: block;
+	border: none;
+	background-color: #00C2A2;
+	color: #fff;
+	font-size: 16px;
+}
+/*作品详情页*/
+.design-detail-wrap{
+	width: 100%;
+	background-color: #F2F2F2;
+}
+.design-detail-content{
+	width: 100%;
+	margin-top: 15px;
+	padding-top: 15px;
+	background-color: #FFFFFF;
+    border: 1px solid #e4e4e4;
+    margin-bottom: 20px;
+    border-top: 1px solid #e4e4e4;
+}
+.design-detail-content h1{
+    margin: 0;
+    padding: 16px 40px;
+    font-size: 28px;
+    color: #333;
+    font-weight: bolder;
+}
+.design-detail-info{
+    padding: 0 40px 14px 40px;
+}
+.design-detail-info ul{
+	color: #c2c2c2;
+}
+.design-detail-info ul:first-child li{
+	color: #999;
+    padding: 0 10px;
+    font-size: 12px;
+    border-right: 1px solid #e4e4e4;
+    margin-right: 10px;
+    float: left;
+}
+.design-detail-info ul:first-child li span.theme{
+	color: #00D9B5;
+}
+.design-detail-info ul:first-child li span{
+    margin-left: 4px;
+}
+.design-detail-info ul:last-child li{
+	float: left;
+    font-size: 12px;
+    margin-right: 10px;
+}
+/*作品图文*/
+.content-info{
+	margin: 0 auto;
+	margin-top: 20px;
+	text-align: center;
+	padding-top: 15px;
+	border-top: 1px solid #e4e4e4;
+}
+.conetnt-description{
+	margin-bottom: 20px;
+}
+.conetnt-description h2{
+	font-size: 18px;
+	color: #666;
+	margin-bottom: 10px;
+}
+.conetnt-description p{
+	text-indent: 24px;
+    position: relative;
+    color: #767676;
+    line-height: 22px;
+    word-break: break-all;
+}
+.design-pic{
+	margin-bottom: 20px;
+	text-align: center;
+}
+.design-pic img{
+	display: inline-block;
+	max-width: 860px;
+}
+.design-pic p{
+	font-size: 16px;
+	line-height: 30px;
+}
+/*右栏*/
+.design-author-info{
+	width: 100%;
+	background-color: #FFFFFF;
+	margin-bottom: 20px;
+}
+.info-header{
+	padding-top: 20px;
+	padding-left: 20px;
+}
+.info-header img{
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
+}
+.info-detail{
+	height: 80px;
+	font-size: 14px;
+}
+.info-detail p{
+	height: 25px;
+	color: #666;
+}
+.info-detail p:first-child{
+	font-size: 18px;
+	height: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #333;
+}
+.order-btn{
+	padding: 20px;
+}
+.order-btn a{
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 14px;
+	background-color: #00D9B5;
+	border-radius: 5px;
+	-moz-border-radius:5px
+}
+.order-btn a:first-child{
+	background-color: #88cf86;
+	margin-bottom: 15px;
+}
