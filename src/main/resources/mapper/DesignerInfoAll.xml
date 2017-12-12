@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chendy.dao.DesignerInfoAllDao">
+
+	<select id="queryDesignerAssociationTotal" resultType="Integer">
+		SELECT
+		COUNT(id) FROM ytyy_designer_info
+	</select>
+
+	<select id="queryDesignerAssociation" resultMap="queryDesignerAssociation">
+		select
+		d.*,u.*,t.*,t2.id as tid2, t2.name as tname2, t2.sort as tsort2,
+		t2.del as tdel2,t3.id as tid3, t3.name as tname3, t3.sort as tsort3,
+		t3.del as tdel3
+		from ytyy_designer_info d
+		left join ytyy_user u
+		on d.uid
+		= u.uid
+		left join ytyy_design_type_select t
+		on d.serve1 = t.id
+		left join
+		ytyy_design_type_select t2
+		on d.serve2=t2.id
+		left join
+		ytyy_design_type_select t3
+		on d.serve3=t3.id
+		where
+		d.del=0
+		<if test="city != ''">
+			AND d.province = #{city}
+		</if>
+		<if test="type != 0">
+			AND (d.serve1 = #{type} OR d.serve3 = #{type} OR d.serve2 = #{type})
+		</if>
+		<if test="price != 0">
+			AND (d.price1 = #{price} OR d.price2 = #{price} OR d.price3 = #{price})
+		</if>
+		<if test="skill != 0">
+			AND (d.special = 1 AND d.skill LIKE CONCAT('%',#{skill},'%' ))
+		</if>
+		order by d.id desc
+	</select>
+	
+	<resultMap type="DesignerInfoAll" id="queryDesignerAssociation">
+		<id property="id" column="id" />
+		<result property="trueName" column="true_name" />
+		<result property="userphone" column="userphone" />
+		<result property="email" column="email" />
+		<result property="sex" column="sex" />
+		<result property="years" column="years" />
+		<result property="province" column="province" />
+		<result property="city" column="city" />
+		<result property="district" column="district" />
+		<result property="realy" column="realy" />
+		<result property="graduation" column="graduation" />
+		<result property="major" column="major" />
+		<result property="special" column="special" />
+		<result property="skill" column="skill" />
+		<result property="introduce" column="introduce" />
+		<result property="good" column="good" />
+		<result property="collect" column="collect" />
+		<result property="appointment" column="appointment" />
+		<result property="recommend" column="recommend" />
+		<result property="del" column="del" />
+		<association property="user" javaType="com.chendy.entity.User">
+			<result property="uid" column="uid" />
+			<result property="username" column="username" />
+			<result property="password" column="password" />
+			<result property="type" column="type" />
+			<result property="avatar" column="avatar" />
+			<result property="register_time" column="register_time" />
+			<result property="login_time" column="login_time" />
+			<result property="del" column="del" />
+			<result property="online" column="online" />
+		</association>
+		<association property="designTypeSelect1" javaType="com.chendy.entity.DesignTypeSelect">
+			<result property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="sort" column="sort" />
+			<result property="del" column="del" />
+		</association>
+		<association property="designTypeSelect2" javaType="com.chendy.entity.DesignTypeSelect">
+			<result property="id" column="tid2" />
+			<result property="name" column="tname2" />
+			<result property="sort" column="tsort2" />
+			<result property="del" column="tdel2" />
+		</association>
+		<association property="designTypeSelect3" javaType="com.chendy.entity.DesignTypeSelect">
+			<result property="id" column="tid3" />
+			<result property="name" column="tname3" />
+			<result property="sort" column="tsort3" />
+			<result property="del" column="tdel3" />
+		</association>
+		<association property="appointment" column="uid"
+			select="selectAppointment" />
+		<association property="priceSelect1" column="price1"
+			select="selectPrice" />
+		<association property="priceSelect2" column="price2"
+			select="selectPrice" />
+		<association property="priceSelect3" column="price3"
+			select="selectPrice" />
+		<collection property="designInfo" ofType="com.chendy.entity.DesignInfo"
+			select="selectDesignByUid" column="uid" />
+	</resultMap>
+
+	<select id="selectAppointment" resultType="int">
+		select count(id) as
+		total from ytyy_appointment where uid=#{id}
+	</select>
+
+	<select id="selectPrice" resultType="com.chendy.entity.PriceSelect">
+		select * from
+		ytyy_price_select where id=#{id}
+	</select>
+
+	<select id="selectDesignByUid" resultMap="DesignInfo">
+		select d.*
+		from
+		ytyy_design_info d
+		where d.designer_id=#{designerId}
+	</select>
+	<resultMap type="com.chendy.entity.DesignInfo" id="DesignInfo">
+		<id column="id" property="id" />
+		<result column="period" property="period" />
+		<collection property="designInfoContent" column="id"
+			select="selectDesignContentById" />
+	</resultMap>
+	<select id="selectDesignContentById" resultMap="DesignContent">
+		select *
+		from
+		ytyy_design_info_content
+		where design_id=#{designId} limit 1
+	</select>
+	<resultMap type="com.chendy.entity.DesignInfoContent" id="DesignContent">
+		<id column="id" property="id" />
+		<result column="design_img_url" property="designImgUrl" />
+		<result column="design_img_title" property="designImgTitle" />
+	</resultMap>
+</mapper>

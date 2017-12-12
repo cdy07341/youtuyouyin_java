@@ -6,4 +6,5 @@ import com.chendy.entity.CitySelect;
 
 public interface CitySelectService {
 	public List<CitySelect> queryAllCity();
+	public CitySelect queryCityById(Integer id);
 }

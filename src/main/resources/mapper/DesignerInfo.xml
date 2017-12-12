@@ -4,10 +4,27 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chendy.dao.DesignerInfoDao">
 	<select id="queryDesignerInfoByCondition" resultType="DesignerInfo">
-		SELECT d.* FROM ytyy_designer_info d
+		SELECT d.*
+		FROM ytyy_designer_info d
 		LEFT JOIN ytyy_user u
 		on d.uid=u.uid
-		where u.del=0 and d.del=0
+		where
+		u.del=0 and d.del=0
 		limit #{start},#{limit}
 	</select>
+
+	<select id="queryDesignerByRecommend" resultMap="DesignerInfoMap">
+		SELECT d.* FROM
+		ytyy_designer_info d
+		LEFT JOIN ytyy_user u
+		on d.uid=u.uid
+		where u.del=0
+		and d.del=0
+		limit #{start},#{limit}
+	</select>
+
+	<resultMap type="DesignerInfo" id="DesignerInfoMap">
+		<result column="true_name" property="trueName" />
+	</resultMap>
+
 </mapper>

@@ -19,4 +19,8 @@ public class CitySelectServiceImpl implements CitySelectService {
 		return citySelectDao.queryAll();
 	}
 
+	public CitySelect queryCityById(Integer id) {
+		return citySelectDao.queryCityById(id);
+	}
+
 }

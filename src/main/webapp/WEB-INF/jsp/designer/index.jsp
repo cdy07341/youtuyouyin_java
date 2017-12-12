@@ -33,52 +33,68 @@
 							<div class="filter-line">
 								<span class="title">所在城市</span>
 								<div class="select-list" data-select="city">
-									<a href="{:U('/Home/Designer/index')}" class="onSelect">全部</a>
-									<!-- <volist name="hotCity" id="cityItem">
-										<a href={:U( 'Home/Designer/index',array('city'=>$cityItem['id'],'desigType'=>$onSelect['desigType'],'range'=>$onSelect['range'],'special'=>$onSelect['special']))} 
-											class=<if condition="$onSelect['city'] eq $cityItem['id']">onSelect</if>>{$cityItem.city}</a>
-									</volist> -->
+									<a href="/youtuyouyin/designer/index${cityUrl }" 
+										<c:if test="${cityId == 0}">
+										class="onSelect"
+										</c:if>
+									>全部</a>
 									<c:forEach items="${cityList }" var="cityListVal">
-										<a href="">${cityListVal.city}</a>
+										<a 
+										<c:if test="${cityId == cityListVal.id}">
+										class="onSelect"
+										</c:if>
+										href="${cityUrl }${cityLink}city=${cityListVal.id}">${cityListVal.city}</a>
 									</c:forEach>
 								</div>
 							</div>
 							<div class="filter-line">
 								<span class="title">擅长类型</span>
 								<div class="select-list" data-select="desigType">
-									<a href="{:U('/Home/Designer/index')}" class="onSelect">全部</a>
-<!-- 									<volist name="hotDesignType" id="typeItem">
-										<a href={:U( 'Home/Designer/index',array('city'=>$onSelect['city'],'desigType'=>$typeItem["id"],'range'=>$onSelect['range'],'special'=>$onSelect['special']))} 
-											class=<if condition="$onSelect['desigType'] eq $typeItem['id']">onSelect</if>>{$typeItem.name}</a>
-									</volist> -->
+									<a href="/youtuyouyin/designer/index${typeUrl }" 
+									<c:if test="${type == 0}">
+										class="onSelect"
+									</c:if>
+									>全部</a>
 									<c:forEach items="${designTypeSelect }" var="designTypeSelectVal">
-										<a href="">${designTypeSelectVal.name }</a>							
+										<a 
+										<c:if test="${type == designTypeSelectVal.id}">
+											class="onSelect"
+										</c:if>
+										href="${typeUrl }${typeLink}type=${designTypeSelectVal.id}">${designTypeSelectVal.name }</a>							
 									</c:forEach>
 								</div>
 							</div>
 							<div class="filter-line">
 								<span class="title">设计价格</span>
 								<div class="select-list" data-select="range">
-									<a href="" class="onSelect">全部</a>
-									<!-- <volist name="priceRange" id="rangeItem">
-										<a href={:U( 'Home/Designer/index',array('city'=>$onSelect['city'],'desigType'=>$onSelect['desigType'],'range'=>$rangeItem["id"],'special'=>$onSelect['special']))} 
-											class=<if condition="$onSelect['range'] eq $rangeItem['id']">onSelect</if>>{$rangeItem.value}</a>
-									</volist> -->
+									<a href="/youtuyouyin/designer/index${priceUrl }" 
+									<c:if test="${price == 0}">
+										class="onSelect"
+									</c:if>
+									>全部</a>
 									<c:forEach items="${priceSelect }" var="priceSelectVal">
-										<a href="">${priceSelectVal.value }</a>
+										<a 
+										<c:if test="${price == priceSelectVal.id}">
+											class="onSelect"
+										</c:if>
+										href="${priceUrl }${priceLink}price=${priceSelectVal.id}">${priceSelectVal.value }</a>
 									</c:forEach>
 								</div>
 							</div>
 							<div class="filter-line">
 								<span class="title">特殊技能</span>
 								<div class="select-list" data-select="range">
-									<a href="" class="onSelect">全部</a>
-									<!-- <volist name="special" id="specialItem">
-										<a href={:U( 'Home/Designer/index',array('city'=>$onSelect['city'],'desigType'=>$onSelect['desigType'],'range'=>$onSelect["range"],'special'=>$specialItem['id']))} 
-											class=<if condition="$onSelect['special'] eq $specialItem['id']">onSelect</if>>{$specialItem.name}</a>
-									</volist> -->
+									<a href="/youtuyouyin/designer/index${skillUrl }" 
+									<c:if test="${skill == 0}">
+										class="onSelect"
+									</c:if>
+									>全部</a>
 									<c:forEach items="${specialSkill }" var="specialSkillVal">
-										<a href="">${specialSkillVal.name }</a>
+										<a 
+										<c:if test="${skill == specialSkillVal.id}">
+											class="onSelect"
+										</c:if>
+										href="${skillUrl }${skillLink}skill=${specialSkillVal.id}">${specialSkillVal.name }</a>
 									</c:forEach>
 								</div>
 							</div>
@@ -93,19 +109,17 @@
 							</div>
 							<div id="designer-recommend" class="swiper-container">
 								<div class="swiper-wrapper designer-recommend-list">
-									<?php for ($i=0; $i < count($recommend);) {?>
-										<div class="swiper-slide">
-											<?php 
-                                            for ($j = 0; $j < 3; $j++) { 
-											     if (!empty($recommend[$i + $j])) {
-											?>
-											<a href="<?php echo U( 'Home/Designer/detail',array( 'id'=>$recommend[$i + $j]['id']))?>">
-												<img src="<?php echo !empty($recommend[$i + $j]['avatar']) ? $recommend[$i + $j]['avatar'] : 'http://www.youtuyouyin.com/Public/images/defaultAvatar.jpg'; ?>" alt="优图优印签约设计师<?php echo $recommend[$i + $j]['true_name']; ?>" />
-												<p><?php echo $recommend[$i + $j]['true_name']; ?></p>
-											</a>
-											<?php }} ?>
+									<c:forEach items="${recommendDesignerList }" var="recommendDesignerListVal" varStatus="status">
+										<c:if test="${status.count % 3 == 1 }">
+											<div class="swiper-slide">
+										</c:if>
+											<a href=""> <img src="" />
+												<p>${status.index } ${status.count } ${status.getCount() } ${recommendDesignerListVal.trueName }</p>
+											</a> 
+										<c:if test="${status.last == true || status.count % 3 == 0 }">
 										</div>
-									<?php $i += 3;} ?>
+										</c:if>
+								</c:forEach>
 								</div>
 								<div class="swiper-button-prev"></div>
 								<div class="swiper-button-next"></div>
@@ -116,60 +130,44 @@
 					<div class="order-box">
 						<ul class="order-list">
 							<li class="order-item">
-								<a href={:U( 'Home/Designer/index',array( 'city'=>$onSelect['city'],'desigType'=>$onSelect['desigType'],'range'=>$onSelect['range']))}>默认排序</a>
+								<a href="">默认排序</a>
 							</li>
 							<li class="order-item">
-								<a href={:U( 'Home/Designer/index',array( 'city'=>$onSelect['city'],'desigType'=>$onSelect['desigType'],'range'=>$onSelect['range'],'orderBy'=>"app"))}>预约数<i class="iconfont icon-jiantou"></i></a>
+								<a href="">预约数<i class="iconfont icon-jiantou"></i></a>
 							</li>
 						</ul>
 					</div>
 					<div class="designer-recommend">
 						<!--设计师身份卡片-->
-						<volist name="list" id="desiognerItem">
+						<c:forEach items="${designerInfoAll }" var="designerInfoAllVal">
 							<div class="designer-list">
 								<!--设计师信息-->
 								<div class="designer-detail-box clearfix">
 									<!--设计师头像-->
 									<div class="designer-headphone fl">
-										<a href={:U( 'Home/Designer/detail',array( 'id'=>$desiognerItem['id']))}><img src="<if condition="$desiognerItem.avatar eq '' ">http://www.youtuyouyin.com/Public/images/defaultAvatar.jpg<else />{$desiognerItem.avatar}</if>" alt="优图优印签约设计师{$desiognerItem.true_name}" /></a>
+										<a href=""><img src="${designerInfoAllVal.user.avatar }" alt="优图优印签约设计师${designerInfoAllVal.trueName }" /></a>
 									</div>
 									<!--设计师信息-->
 									<div class="designer-detail fl clearfix">
 										<!--文字信息-->
 										<div class="designer-detail-left fl">
 											<div class="deigner-name clearfix">
-												<a href={:U( 'Home/Designer/detail',array( 'id'=>$desiognerItem['id']))}>{$desiognerItem.true_name}</a>
-												<!--设计师身份标签-->
-												<!--<span id="tuijian" class="designer-tag"></span>
-												<span id="shiming" class="designer-tag"></span>-->
+												<a href="">${designerInfoAllVal.trueName }</a>
 											</div>
-											<p class="p-line"><span class="line-title designer-position">所在城市<em>{$desiognerItem.city}-{$desiognerItem.district}</em></span><span class="line-title designer-num">作品数量<em><?php $count=D("DesignInfo")->designCount($desiognerItem["id"]);echo $count ;?></em></span></p>
-											<p class="p-line"><span class="line-title">擅长类型<em><?php echo $style=D("DesignTypeSelect")->getNameById($desiognerItem['serve1']);?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $style=D("DesignTypeSelect")->getNameById($desiognerItem['serve2']);?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $style=D("DesignTypeSelect")->getNameById($desiognerItem['serve3']);?></em></span></p>
-											<p class="p-line"><span class="line-title">对应价格<em><?php echo $price=D("PriceSelect")->getValueById($desiognerItem['price1']) ;?>&nbsp;&nbsp;<?php echo $price=D("PriceSelect")->getValueById($desiognerItem['price2']) ;?>&nbsp;&nbsp;<?php echo $price=D("PriceSelect")->getValueById($desiognerItem['price3']) ;?></em></span></p>
+											<p class="p-line"><span class="line-title designer-position">所在城市<em>${designerInfoAllVal.city}-${designerInfoAllVal.district}</em></span><span class="line-title designer-num">作品数量<em>10</em></span></p>
+											<p class="p-line"><span class="line-title">擅长类型<em>${designerInfoAllVal.designTypeSelect1.name }&nbsp;&nbsp;&nbsp;&nbsp;${designerInfoAllVal.designTypeSelect2.name }&nbsp;&nbsp;&nbsp;&nbsp;${designerInfoAllVal.designTypeSelect3.name }</em></span></p>
+											<p class="p-line"><span class="line-title">对应价格<em>${designerInfoAllVal.priceSelect1.value }&nbsp;&nbsp;${designerInfoAllVal.priceSelect2.value }&nbsp;&nbsp;${designerInfoAllVal.priceSelect3.value }</em></span></p>
 											<div class="designer-data">
 												<div class="num-box fl">
 													<span>预约数</span>
-													<span class="hight-light-text">{$desiognerItem.appointment}</span>
+													<span class="hight-light-text">${designerInfoAllVal.appointment }</span>
 												</div>
-												<!--<span class="cutting_line"></span>-->
-												<!--<div class="num-box fl">
-													<span>签单数</span>
-													<span class="hight-light-text">0</span>
-												</div>-->
-												<!--<span class="cutting_line"></span>
-												<div class="num-box fl">
-													<span class="hight-color">评价</span>
-													<a href="" target="_blank">
-														<span class="hight-light-text hight-color">0</span>
-													</a>
-												</div>-->
 											</div>
 										</div>
 										<!--联系设计师-->
 										<div class="designer-detail-right">
 											<ul>
 												<!--预约短信-->
-												<!--<li class="list-designer-entrust"><i class="iconfont icon-yuyue"></i>委托设计</li>-->
 												<if condition="$_SESSION['userdata'][uid] neq $desiognerItem['uid']">
 													<!--询价单-->
 													<li class="list-designer-ask" data-id="{$desiognerItem.id}"><i class="iconfont icon-yibaojia"></i>询问报价</li>
@@ -179,33 +177,25 @@
 											</ul>
 										</div>
 									</div>
-									<if condition="$desiognerItem['recommend'] neq 0">
 										<i class="iconfont icon-recommend-right" id="recommend-icon"></i>
-									</if>
 								</div>
 								<if condition="$count neq 0">
 									<!--设计作品图片列表-->
 									<div class="designer-design-box">
 										<ul>
-											<?php $design=D('DesignInfo')->indexDesign($desiognerItem["id"]);?>
-											<volist name="design" id="designItem">
-												<?php $designPic=D('DesignInfoContent')->getDesignPicById($designItem["id"]);?>
-												<volist name="designPic" id="designPicUrl">
-													<li>
-														<a href={:U( 'Home/Design/detail',array( 'id'=>$designItem["id"]))}><img src="{$designPicUrl.design_img_url|replacePicUrl}" alt="{$designPicUrl.design_img_title}" /></a>
-													</li>
-												</volist>
-											</volist>
+											<c:forEach items="${designerInfoAllVal.designInfo }" var="designInfoVal">
+												<li>
+													<a href=""><img src="${designInfoVal.designInfoContent[0].designImgUrl }" alt="${designInfoVal.designInfoContent[0].designImgTitle }" /></a>
+												</li>
+											</c:forEach>
 										</ul>
 									</div>
 								</if>
 							</div>
-						</volist>
+						</c:forEach>
 					</div>
 					<!--分页-->
-					<div class="page">
-						{$page}
-					</div>
+					<jsp:include page="../common/page.jsp" />
 				</div>
 				<!--主体右栏-->
 				<div class="column_right">

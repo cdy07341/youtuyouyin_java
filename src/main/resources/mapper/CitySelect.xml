@@ -6,4 +6,10 @@
 	<select id="queryAll" resultType="CitySelect">
 		SELECT * FROM ytyy_city_select
 	</select>
+	
+	<select id="queryCityById" resultType="CitySelect">
+		select *
+		from ytyy_city_select
+		where id=#{id}
+	</select>
 </mapper>
