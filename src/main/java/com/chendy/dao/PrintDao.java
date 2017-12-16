@@ -1,8 +1,9 @@
 package com.chendy.dao;
 
 import java.util.List;
-import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface PrintDao {
-	public List<com.chendy.entity.Print> queryByCondition(Map<String, Object> pageInfo);
+	public List<com.chendy.entity.Print> queryAll(@Param("type") String type);
 }

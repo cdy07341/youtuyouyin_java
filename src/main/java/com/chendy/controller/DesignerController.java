@@ -26,6 +26,7 @@ import com.chendy.service.DesignerInfoService;
 import com.chendy.service.PriceSelectService;
 import com.chendy.service.SpecialSkillService;
 import com.chendy.service.UserService;
+import com.chendy.util.Util;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -49,6 +50,9 @@ public class DesignerController {
 	
 	@Autowired
 	public DesignerInfoService designerInfoService;
+	
+	@Autowired
+	public Util util;
 	
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String detail(HttpServletRequest res, HttpServletResponse resp) {
@@ -153,6 +157,8 @@ public class DesignerController {
 		recommendPageInfo.put("limit", 15);
 		List<DesignerInfo> recommendDesignerList = designerInfoService.queryDesignerByRecommend(recommendPageInfo);
 		
+		String strParams = util.generateStrParams(request.getParameterMap());
+		
 		model.addAttribute("objPage", objPage); 
 		model.addAttribute("cityList", cityList);//所在城市
 		model.addAttribute("designTypeSelect", designTypeSelect);//擅长类型
@@ -172,6 +178,7 @@ public class DesignerController {
 		model.addAttribute("type", type);
 		model.addAttribute("price", price);
 		model.addAttribute("skill", skill);
+		model.addAttribute("strParams", strParams);
 		
 		return "designer/index";
 	}

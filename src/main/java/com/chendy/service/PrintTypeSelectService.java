@@ -6,6 +6,6 @@ import com.chendy.entity.PrintTypeSelect;
 
 public interface PrintTypeSelectService {
 
-	List<PrintTypeSelect> queryAll();
+	List<PrintTypeSelect> queryAll(Integer id);
 
 }

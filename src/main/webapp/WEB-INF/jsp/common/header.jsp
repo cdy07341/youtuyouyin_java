@@ -56,19 +56,19 @@
 		<ul class="clearfix">
 			<?php $nav=array("index","designer","print","design","article");?>
 			<li class="nav-item {$nav.0|navActive}">
-				<a href="/home/index/index">首页</a>
+				<a href="/youtuyouyin/">首页</a>
 			</li>
 			<li class="nav-item {$nav.1|navActive}">
-				<a href="/home/designer/index">找设计师</a>
+				<a href="/youtuyouyin/designer/index">找设计师</a>
 			</li>
 			<li class="nav-item {$nav.2|navActive}">
-				<a href="/home/print/index">找印刷</a>
+				<a href="/youtuyouyin/print/index">找印刷</a>
 			</li>
 			<li class="nav-item {$nav.3|navActive}">
-				<a href="/home/design/index">作品案例</a>
+				<a href="/youtuyouyin/design/index">作品案例</a>
 			</li>
 			<li class="nav-item {$nav.4|navActive}">
-				<a href="/home/article/articleList">行业资讯</a>
+				<a href="/youtuyouyin/article/articleList">行业资讯</a>
 			</li>
 		</ul>
 	</div>

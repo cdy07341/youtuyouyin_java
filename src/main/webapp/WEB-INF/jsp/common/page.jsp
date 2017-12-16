@@ -11,18 +11,18 @@
 	<!-- 分页功能 start -->
 	<div align="center">
 		<font size="2">共 ${objPage.getPages()} 页</font> <font size="2">第
-			${objPage.getPageNum()} 页</font> <a href="?page=1">首页</a>
+			${objPage.getPageNum()} 页</font> <a href="?page=1${strParams }">首页</a>
 		<c:choose>
 			<c:when test="${objPage.getPageNum() - 1 > 0}">
-				<a href="?page=${objPage.getPageNum() - 1}">上一页</a>
+				<a href="?page=${objPage.getPageNum() - 1}${strParams }">上一页</a>
 			</c:when>
 		</c:choose>
 		<c:choose>
 			<c:when test="${objPage.getPageNum() < objPage.getPages()}">
-				<a href="?page=${objPage.getPageNum() + 1}">下一页</a>
+				<a href="?page=${objPage.getPageNum() + 1}${strParams }">下一页</a>
 			</c:when>
 		</c:choose>
-		<a href="?page=${objPage.getPages()}">尾页</a>
+		<a href="?page=${objPage.getPages()}${strParams }">尾页</a>
 	</div>
 	<!-- 分页功能 End -->
 </body>

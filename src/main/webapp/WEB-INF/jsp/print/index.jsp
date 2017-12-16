@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -37,10 +38,10 @@
 						<div class="filter-line">
 							<span class="title">印刷类型</span>
 							<div class="select-list">
-								<a href="{:U('/Home/Print/index')}" class=<if condition="$selected['type'] eq null">onSelect</if>>全部</a>
-								<volist name="typeList" id="typeItem">
-									<a href={:U('Home/print/index',array("type"=>$typeItem['id']))}  class=<if condition="$selected['type'] eq $typeItem['id']">onSelect</if>>{$typeItem.name}</a>
-								</volist>
+								<a href="/youtuyouyin/print/index" <c:if test="${empty type }">class="onSelect"</c:if>>全部</a>
+								<c:forEach items="${printTypeSelects }" var="printTypeSelectsV">
+									<a href="?type=${printTypeSelectsV.id }"  <c:if test="${type == printTypeSelectsV.id }">class="onSelect"</c:if>>${printTypeSelectsV.name}</a>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -49,22 +50,19 @@
 				<div class="print-recommend">
 					<div class="print-recommend-list clearfix">
 						<!--产品卡片-->
-						<volist name="list" id="printItem">
-							<?php $printStyle=D("PrintTypeSelect")->getNameById($printItem['type']);?>
+						<c:forEach items="${prints }" var="printsV">
 							<div class="print-recommend-item">
-								<a href={:U('Home/Print/detail',array("printId"=>$printItem['id']))}><img class="lazy" data-original="{$printItem.coverimg|replacePrintPicUrl}" alt="{$printStyle}印刷产品图片" title="{$printStyle}"/></a>
-								<div class="print-title">{$printItem.title}</div>
+								<a href=""><img class="lazy" data-original="${printsV.coverimg }" alt="${printsV.printTypeSelect.name }印刷产品图片" title="${printsV.printTypeSelect.name }"/></a>
+								<div class="print-title">${printsV.title }</div>
 								<div class="print-detail">
-									<span>印刷类型：<em>{$printStyle}</em></span>
+									<span>印刷类型：<em>${printsV.printTypeSelect.name }</em></span>
 								</div>
 							</div>
-						</volist>
+						</c:forEach>
 					</div>
 				</div>
 				<!--分页-->
-				<div class="page">
-					{$page}
-				</div>
+				<jsp:include page="../common/page.jsp" />
 			</div>
 		</section>
 		<!--footer-->

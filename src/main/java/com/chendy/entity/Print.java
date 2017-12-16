@@ -13,6 +13,14 @@ public class Print {
 	private Integer dtime;
 	private Integer aduit;
 	private Integer del;
+	private PrintTypeSelect printTypeSelect;
+	
+	public PrintTypeSelect getPrintTypeSelect() {
+		return printTypeSelect;
+	}
+	public void setPrintTypeSelect(PrintTypeSelect printTypeSelect) {
+		this.printTypeSelect = printTypeSelect;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -85,12 +93,6 @@ public class Print {
 	public void setDel(Integer del) {
 		this.del = del;
 	}
-	@Override
-	public String toString() {
-		return "Print [id=" + id + ", type=" + type + ", author=" + author + ", title=" + title + ", describle="
-				+ describle + ", coverimg=" + coverimg + ", content=" + content + ", hot=" + hot + ", recommend="
-				+ recommend + ", dtime=" + dtime + ", aduit=" + aduit + ", del=" + del + "]";
-	}
 	public Print(Integer id, Integer type, String author, String title, String describle, String coverimg,
 			String content, Integer hot, Integer recommend, Integer dtime, Integer aduit, Integer del) {
 		super();
@@ -109,4 +111,11 @@ public class Print {
 	}
 	public Print() {
 	}
+	@Override
+	public String toString() {
+		return "Print [id=" + id + ", type=" + type + ", author=" + author + ", title=" + title + ", describle=" + describle + ", coverimg="
+				+ coverimg + ", content=" + content + ", hot=" + hot + ", recommend=" + recommend + ", dtime=" + dtime + ", aduit=" + aduit + ", del="
+				+ del + ", printTypeSelect=" + printTypeSelect + "]";
+	}
+	
 }

@@ -15,8 +15,8 @@ public class PrintTypeSelectServiceImpl implements PrintTypeSelectService {
 	public PrintTypeSelectDao printTypeSelectDao;
 	
 
-	public List<PrintTypeSelect> queryAll() {
-		return printTypeSelectDao.queryAll();
+	public List<PrintTypeSelect> queryAll(Integer id) {
+		return printTypeSelectDao.queryAll(id);
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.chendy.service.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +14,9 @@ public class PrintServiceImpl implements PrintService {
 	@Autowired
 	public PrintDao printDao;
 
-	public List<Print> queryPrintByCondition(Map<String, Object> pageInfo) {
-		return printDao.queryByCondition(pageInfo);
+	public List<Print> queryAll(String type) {
+		return printDao.queryAll(type);
 	}
+
 
 }
